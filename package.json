@@ -1,0 +1,24 @@
+{
+  "name": "new_course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write src/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oleg-marchenko1983/my_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oleg-marchenko1983/my_app/issues"
+  },
+  "homepage": "https://github.com/oleg-marchenko1983/my_app#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^1.15.2"
+  }
+}
