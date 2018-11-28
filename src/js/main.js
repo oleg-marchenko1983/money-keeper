@@ -1,4 +1,3 @@
-'use strict';
 
 let startBtn = document.getElementById('start'),
   budgetValue = document.getElementsByClassName('budget-value')[0],
@@ -9,6 +8,8 @@ let startBtn = document.getElementById('start'),
   incomeValue = document.getElementsByClassName('income-value')[0],
   monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0],
   yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0],
+
+  
   expensesItem = document.getElementsByClassName('expenses-item'),
   expensesBtn = document.getElementsByTagName('button')[0],
   optionalExpensesBtn = document.getElementsByTagName('button')[1],
