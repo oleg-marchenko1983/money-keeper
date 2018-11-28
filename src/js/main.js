@@ -9,7 +9,6 @@ let startBtn = document.getElementById('start'),
   incomeValue = document.getElementsByClassName('income-value')[0],
   monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0],
   yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0],
-
   expensesItem = document.getElementsByClassName('expenses-item'),
   expensesBtn = document.getElementsByTagName('button')[0],
   optionalExpensesBtn = document.getElementsByTagName('button')[1],
@@ -24,6 +23,11 @@ let startBtn = document.getElementById('start'),
   dayValue = document.querySelector('.day-value');
 
 let time, money;
+// Второй вариант деактивировать кнопки
+// expensesBtn.disabled = true;
+// optionalExpensesBtn.disabled = true;
+// countBtn.disabled = true;
+
 /* Старт програмы, ввод бюджета на месяц*/
 startBtn.addEventListener('click', function() {
   time = prompt('Введите дату в формате YYYY-MM-DD', '');
@@ -41,15 +45,19 @@ startBtn.addEventListener('click', function() {
   countBtn.removeAttribute('disabled');
   optionalExpensesBtn.removeAttribute('disabled');
   expensesBtn.removeAttribute('disabled');
+  // Второй вариант, активировать кнопки
+  // expensesBtn.disabled = false;
+  // optionalExpensesBtn.disabled = false;
+  // countBtn.disabled = false;
 });
 
-  /* Ввод обязательных расходов */
+/* Ввод обязательных расходов */
+expensesBtn.addEventListener('click', function() {
   let sum = 0;
-  expensesBtn.addEventListener('click', function() {
   for (let i = 0; i < expensesItem.length; i++) {
     let a = expensesItem[i].value,
-    b = +expensesItem[++i].value;
-    
+      b = +expensesItem[++i].value;
+
     if (
       typeof a === 'string' &&
       typeof a != null &&
@@ -57,8 +65,8 @@ startBtn.addEventListener('click', function() {
       a != '' &&
       b != '' &&
       a.length < 50
-      ) {
-        console.log('done');
+    ) {
+      console.log('done');
 
       appData.expenses[a] = b;
       sum += +b;
@@ -80,9 +88,10 @@ optionalExpensesBtn.addEventListener('click', function() {
 /* Расчёт дневного бюджета и уровень достака*/
 countBtn.addEventListener('click', function() {
   if (appData.budget != undefined) {
-    appData.moneyPerDay = ((appData.budget - sum)  / 30).toFixed();
+    // appData.moneyPerDay = ((appData.budget - sum)  / 30).toFixed();
+    appData.moneyPerDay = ((appData.budget - +expensesValue.textContent) / 30).toFixed();
     dayBudgetValue.textContent = appData.moneyPerDay;
-    
+
     if (appData.moneyPerDay < 100) {
       levelValue.textContent = 'Это минимальный уровень достатка!';
     } else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
@@ -129,14 +138,14 @@ percentValue.addEventListener('input', function() {
   if (appData.savings == true) {
     let sum = +sumValue.value;
     let percent = +percentValue.value;
-    
+
     appData.monthIncome = (sum / 100 / 12) * percent;
     appData.yearIncome = (sum / 100) * percent;
-    
+
     monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
     yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
   }
-  });
+});
 /* Наш главный обьект*/
 let appData = {
   budget: money,
